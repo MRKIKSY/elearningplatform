@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const jobLoader = async ({ params }) => {
-  const { id } = params; // Correctly extract id from params
+  const { id } = params;
   console.log('Job ID from URL:', id); // Debugging line
 
   if (!id) {
@@ -27,7 +27,6 @@ export const jobLoader = async ({ params }) => {
 
 const JobPage = ({ deleteJob }) => {
   const navigate = useNavigate();
-  const { id } = useParams(); // Accessing the job ID from the URL
   const job = useLoaderData(); // Data is automatically loaded by `jobLoader`
 
   if (!job) {
@@ -35,9 +34,7 @@ const JobPage = ({ deleteJob }) => {
   }
 
   const onDeleteClick = async (jobId) => {
-    const confirm = window.confirm(
-      'Are you sure you want to delete this listing?'
-    );
+    const confirm = window.confirm('Are you sure you want to delete this listing?');
 
     if (!confirm) return;
 

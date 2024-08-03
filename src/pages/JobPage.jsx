@@ -1,3 +1,5 @@
+// JobPage.jsx
+import React from 'react';
 import { useParams, useLoaderData, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -11,7 +13,7 @@ export const jobLoader = async ({ params }) => {
   }
 
   try {
-    const res = await fetch(`/api/jobs/${id}`);
+    const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${id}`);
     if (!res.ok) {
       throw new Error(`Network response was not ok: ${res.statusText}`);
     }
@@ -134,4 +136,3 @@ const JobPage = ({ deleteJob }) => {
 };
 
 export default JobPage;
-

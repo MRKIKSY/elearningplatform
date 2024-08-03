@@ -23,12 +23,16 @@ const App = () => {
         },
         body: JSON.stringify(newJob),
       });
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      if (!res.ok) {
+        const errorDetail = await res.text(); // Get error details from response
+        throw new Error(`HTTP error! status: ${res.status}, detail: ${errorDetail}`);
+      }
       // Optionally handle response or confirmation
     } catch (error) {
-      console.error('Error adding job:', error);
+      console.error('Error adding job:', error.message);
     }
   };
+  
 
   // Delete Job
   const deleteJob = async (id) => {

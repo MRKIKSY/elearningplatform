@@ -1,0 +1,8 @@
+.home-background {
+    background-image: url('/download (1).jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Adjust this value as needed */
+  }
+  

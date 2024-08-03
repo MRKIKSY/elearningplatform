@@ -27,7 +27,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://jobmarketbackend.onrender.com',
+        target: 'https://elearningbackend-z07d.onrender.com',
         changeOrigin: true,
         secure: false,
       },

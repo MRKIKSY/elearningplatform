@@ -8,7 +8,7 @@ const JobListings = ({ isHome = false }) => {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const apiUrl = isHome ? 'https://jobmarketbackend.onrender.com/api/jobs?_limit=3' : 'https://jobmarketbackend.onrender.com/api/jobs';
+      const apiUrl = isHome ? 'https://elearningbackend-z07d.onrender.com/api/jobs?_limit=3' : 'https://jobmarketbackend.onrender.com/api/jobs';
       try {
         console.log(`Fetching data from: ${apiUrl}`);
         const res = await fetch(apiUrl);

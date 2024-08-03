@@ -16,7 +16,7 @@ const App = () => {
   // Add New Job
   const addJob = async (newJob) => {
     try {
-      const res = await fetch('https://jobmarketbackend.onrender.com/api/jobs', {
+      const res = await fetch('https://elearningbackend-z07d.onrender.com/api/jobs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

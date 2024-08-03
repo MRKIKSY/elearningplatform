@@ -13,7 +13,7 @@ export const jobLoader = async ({ params }) => {
   }
 
   try {
-    const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${id}`); // Updated URL for production
+    const res = await fetch(`https://elearningbackend-z07d.onrender.com/api/jobs/${id}`); // Updated URL for production
     if (!res.ok) {
       const errorText = await res.text(); // Capture error response as text
       console.error('Error response:', errorText); // Log error response for debugging

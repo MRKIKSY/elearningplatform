@@ -5,30 +5,32 @@ import Spinner from './Spinner';
 const JobListings = ({ isHome = false }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const apiUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const apiUrl = isHome ? 'https://jobmarketbackend.onrender.com/api/jobs?_limit=3' : 'http://localhost:5000/api/jobs';
+      const apiUrl = isHome ? 'https://jobmarketbackend.onrender.com/api/jobs?_limit=3' : 'https://jobmarketbackend.onrender.com/api/jobs';
       try {
-        console.log(`Fetching data from: ${apiUrl}`); // Log the API URL
+        console.log(`Fetching data from: ${apiUrl}`);
         const res = await fetch(apiUrl);
-        console.log(`Response status: ${res.status}`); // Log the response status
+        console.log(`Response status: ${res.status}`);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         const data = await res.json();
-        console.log('Fetched data:', data); // Log the fetched data
+        console.log('Fetched data:', data);
         setJobs(data);
       } catch (error) {
-        console.error('Error fetching data:', error); // Use console.error for errors
-        setJobs([]); // Set jobs to an empty array on error
+        console.error('Error fetching data:', error);
+        setJobs([]);
       } finally {
         setLoading(false);
       }
     };
+    
 
     fetchJobs();
-  }, [isHome]); // Added isHome as a dependency to re-fetch if it changes
+  }, [isHome, apiUrl]); // Added apiUrl as a dependency
 
   return (
     <section className='bg-blue-50 px-4 py-10'>

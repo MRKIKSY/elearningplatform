@@ -1,4 +1,3 @@
-// JobPage.jsx
 import React from 'react';
 import { useParams, useLoaderData, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
@@ -6,9 +5,8 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const jobLoader = async ({ params }) => {
-  const { id } = useParams();
+  const { id } = params; // Correctly extract id from params
   console.log('Job ID from URL:', id); // Debugging line
-  
 
   if (!id) {
     throw new Error('Job ID is missing');
@@ -16,7 +14,6 @@ export const jobLoader = async ({ params }) => {
 
   try {
     const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${id}`);
-
     if (!res.ok) {
       throw new Error(`Network response was not ok: ${res.statusText}`);
     }
@@ -30,25 +27,28 @@ export const jobLoader = async ({ params }) => {
 
 const JobPage = ({ deleteJob }) => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams(); // Accessing the job ID from the URL
   const job = useLoaderData(); // Data is automatically loaded by `jobLoader`
 
   if (!job) {
     return <div>Error loading job details</div>; // Basic error handling
   }
 
-  const onDeleteClick = (jobId) => {
+  const onDeleteClick = async (jobId) => {
     const confirm = window.confirm(
       'Are you sure you want to delete this listing?'
     );
 
     if (!confirm) return;
 
-    deleteJob(jobId);
-
-    toast.success('Job deleted successfully');
-
-    navigate('/jobs');
+    try {
+      await deleteJob(jobId);
+      toast.success('Job deleted successfully');
+      navigate('/jobs');
+    } catch (error) {
+      console.error('Error deleting job:', error);
+      toast.error('Error deleting job');
+    }
   };
 
   return (

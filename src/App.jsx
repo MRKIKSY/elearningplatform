@@ -11,6 +11,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import JobPage, { jobLoader } from './pages/JobPage';
 import AddJobPage from './pages/AddJobPage';
 import EditJobPage from './pages/EditJobPage';
+
 const App = () => {
   // Add New Job
   const addJob = async (newJob) => {
@@ -85,11 +86,7 @@ const App = () => {
     )
   );
 
-  return (
-    <ErrorBoundary>
-      <RouterProvider router={router} />
-    </ErrorBoundary>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

@@ -32,7 +32,6 @@ const App = () => {
       console.error('Error adding job:', error.message);
     }
   };
-  
 
   // Delete Job
   const deleteJob = async (id) => {
@@ -47,6 +46,7 @@ const App = () => {
     }
   };
 
+  // Update Job
   const updateJob = async (job) => {
     try {
       console.log('Updating job with data:', job); // Add this line
@@ -64,8 +64,6 @@ const App = () => {
       console.error('Error updating job:', error);
     }
   };
-  
-  
 
   const router = createBrowserRouter(
     createRoutesFromElements(

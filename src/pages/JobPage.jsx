@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const jobLoader = async ({ params }) => {
-  const { id } = params;
+  const { id } = useParams();
+  console.log('Job ID from URL:', id); // Debugging line
+  
 
   if (!id) {
     throw new Error('Job ID is missing');

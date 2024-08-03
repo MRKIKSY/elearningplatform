@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -16,6 +16,12 @@ const EditJobPage = ({ updateJobSubmit }) => {
 
   const navigate = useNavigate();
   const { id } = useParams();
+
+  // Debugging: Log job ID and job data
+  useEffect(() => {
+    console.log('Job ID from URL:', id);
+    console.log('Fetched job data:', job);
+  }, [id, job]);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -55,6 +61,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
               Update Job
             </h2>
 
+            {/* Job Type */}
             <div className='mb-4'>
               <label
                 htmlFor='type'
@@ -77,6 +84,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
               </select>
             </div>
 
+            {/* Job Title */}
             <div className='mb-4'>
               <label className='block text-gray-700 font-bold mb-2'>
                 Job Listing Name
@@ -92,6 +100,8 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
+
+            {/* Description */}
             <div className='mb-4'>
               <label
                 htmlFor='description'
@@ -110,6 +120,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
               ></textarea>
             </div>
 
+            {/* Salary */}
             <div className='mb-4'>
               <label
                 htmlFor='salary'
@@ -139,6 +150,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
               </select>
             </div>
 
+            {/* Location */}
             <div className='mb-4'>
               <label className='block text-gray-700 font-bold mb-2'>
                 Location
@@ -155,6 +167,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
               />
             </div>
 
+            {/* Company Info */}
             <h3 className='text-2xl mb-5'>Company Info</h3>
 
             <div className='mb-4'>
@@ -231,12 +244,15 @@ const EditJobPage = ({ updateJobSubmit }) => {
               />
             </div>
 
-            <button
-              type='submit'
-              className='bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700'
-            >
-              Update Job
-            </button>
+            {/* Submit Button */}
+            <div className='text-center'>
+              <button
+                type='submit'
+                className='bg-indigo-500 text-white py-2 px-4 rounded'
+              >
+                Update Job
+              </button>
+            </div>
           </form>
         </div>
       </div>

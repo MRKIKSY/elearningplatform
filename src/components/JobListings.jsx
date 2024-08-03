@@ -5,7 +5,6 @@ import Spinner from './Spinner';
 const JobListings = ({ isHome = false }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const apiUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -22,15 +21,14 @@ const JobListings = ({ isHome = false }) => {
         setJobs(data);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setJobs([]);
+        setJobs([]); // You might want to add user feedback here
       } finally {
         setLoading(false);
       }
     };
-    
 
     fetchJobs();
-  }, [isHome, apiUrl]); // Added apiUrl as a dependency
+  }, [isHome]); // Removed apiUrl as a dependency
 
   return (
     <section className='bg-blue-50 px-4 py-10'>

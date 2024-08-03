@@ -4,20 +4,20 @@ import { toast } from 'react-toastify';
 
 const EditJobPage = ({ updateJobSubmit }) => {
   const job = useLoaderData();
-  const [title, setTitle] = useState(job.title);
-  const [type, setType] = useState(job.type);
-  const [location, setLocation] = useState(job.location);
-  const [description, setDescription] = useState(job.description);
-  const [salary, setSalary] = useState(job.salary);
-  const [companyName, setCompanyName] = useState(job.company.name);
-  const [companyDescription, setCompanyDescription] = useState(job.company.description);
-  const [contactEmail, setContactEmail] = useState(job.company.contactEmail);
-  const [contactPhone, setContactPhone] = useState(job.company.contactPhone);
+  const [title, setTitle] = useState(job.title || '');
+  const [type, setType] = useState(job.type || '');
+  const [location, setLocation] = useState(job.location || '');
+  const [description, setDescription] = useState(job.description || '');
+  const [salary, setSalary] = useState(job.salary || '');
+  const [companyName, setCompanyName] = useState(job.company?.name || '');
+  const [companyDescription, setCompanyDescription] = useState(job.company?.description || '');
+  const [contactEmail, setContactEmail] = useState(job.company?.contactEmail || '');
+  const [contactPhone, setContactPhone] = useState(job.company?.contactPhone || '');
 
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
     const updatedJob = {
@@ -34,12 +34,16 @@ const EditJobPage = ({ updateJobSubmit }) => {
       },
     };
 
-    console.log('Submitting job update:', { id, ...updatedJob }); // Add this line
+    console.log('Submitting job update:', { id, ...updatedJob });
 
-    updateJobSubmit({ id, ...updatedJob });
-
-    toast.success('Job Updated Successfully');
-    navigate(`/jobs/${id}`);
+    try {
+      await updateJobSubmit({ id, ...updatedJob });
+      toast.success('Job Updated Successfully');
+      navigate(`/jobs/${id}`);
+    } catch (error) {
+      console.error('Error updating job:', error);
+      toast.error('Failed to update job');
+    }
   };
 
   return (

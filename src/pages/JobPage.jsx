@@ -13,8 +13,10 @@ export const jobLoader = async ({ params }) => {
   }
 
   try {
-    const res = await fetch(`/api/jobs/${id}`);
+    const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${id}`); // Updated URL for production
     if (!res.ok) {
+      const errorText = await res.text(); // Capture error response as text
+      console.error('Error response:', errorText); // Log error response for debugging
       throw new Error(`Network response was not ok: ${res.statusText}`);
     }
     const data = await res.json();

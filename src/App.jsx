@@ -11,8 +11,6 @@ import NotFoundPage from './pages/NotFoundPage';
 import JobPage, { jobLoader } from './pages/JobPage';
 import AddJobPage from './pages/AddJobPage';
 import EditJobPage from './pages/EditJobPage';
-import ErrorBoundary from './components/ErrorBoundary.jsx'; // Adjust the path if necessary
-
 const App = () => {
   // Add New Job
   const addJob = async (newJob) => {
@@ -51,7 +49,7 @@ const App = () => {
   const updateJob = async (job) => {
     try {
       console.log('Updating job with data:', job); // Debugging line
-      const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${job.id}`, {
+      const res = await fetch(`/api/jobs/${job.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

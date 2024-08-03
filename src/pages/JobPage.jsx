@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -93,35 +93,35 @@ const JobPage = ({ deleteJob }) => {
               <div className='bg-white p-6 rounded-lg shadow-md'>
                 <h3 className='text-xl font-bold mb-6'>Company Info</h3>
 
-                <h2 className='text-2xl'>{job.company.name}</h2>
+                <h2 className='text-2xl'>{job.company?.name}</h2>
 
-                <p className='my-2'>{job.company.description}</p>
+                <p className='my-2'>{job.company?.description}</p>
 
                 <hr className='my-4' />
 
                 <h3 className='text-xl'>Contact Email:</h3>
 
                 <p className='my-2 bg-indigo-100 p-2 font-bold'>
-                  {job.company.contactEmail}
+                  {job.company?.contactEmail}
                 </p>
 
                 <h3 className='text-xl'>Contact Phone:</h3>
 
                 <p className='my-2 bg-indigo-100 p-2 font-bold'>
-                  {job.company.contactPhone}
+                  {job.company?.contactPhone}
                 </p>
               </div>
 
               <div className='bg-white p-6 rounded-lg shadow-md mt-6'>
                 <h3 className='text-xl font-bold mb-6'>Manage Job</h3>
                 <Link
-                  to={`https://jobmarketbackend.onrender.com/edit-job/${job.id}`}
+                  to={`/edit-job/${job._id}`} // Ensure correct path and parameter
                   className='bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'
                 >
                   Edit Job
                 </Link>
                 <button
-                  onClick={() => onDeleteClick(job.id)}
+                  onClick={() => onDeleteClick(job._id)}
                   className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'
                 >
                   Delete Job

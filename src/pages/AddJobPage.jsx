@@ -36,7 +36,7 @@ const AddJobPage = ({ addJobSubmit }) => {
 
     toast.success('Job Added Successfully');
 
-    return navigate('https://jobmarketbackend.onrender.com/jobs');
+    return navigate('/jobs');
   };
 
   return (

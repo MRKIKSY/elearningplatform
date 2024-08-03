@@ -19,8 +19,6 @@ const EditJobPage = ({ updateJobSubmit }) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
- 
-
   const submitForm = (e) => {
     e.preventDefault();
   
@@ -38,11 +36,14 @@ const EditJobPage = ({ updateJobSubmit }) => {
       },
     };
   
-    updateJobSubmit({ id, ...updatedJob }); // Pass `id` along with the job details
+    console.log('Submitting job update:', { id, ...updatedJob }); // Add this line
+  
+    updateJob({ id, ...updatedJob });
   
     toast.success('Job Updated Successfully');
     navigate(`/jobs/${id}`);
   };
+  ;
   
   return (
     <section className='bg-indigo-50'>

@@ -47,9 +47,10 @@ const App = () => {
     }
   };
 
-  const updateJob = async (id, job) => {
+  const updateJob = async (job) => {
     try {
-      const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${id}`, {
+      console.log('Updating job with data:', job); // Add this line
+      const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${job.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -57,11 +58,13 @@ const App = () => {
         body: JSON.stringify(job),
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      console.log('Job update response:', await res.json()); // Add this line
       // Optionally handle response or confirmation
     } catch (error) {
       console.error('Error updating job:', error);
     }
   };
+  
   
 
   const router = createBrowserRouter(

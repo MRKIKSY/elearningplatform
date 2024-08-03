@@ -36,7 +36,7 @@ const App = () => {
   // Delete Job
   const deleteJob = async (id) => {
     try {
-      const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${id}`, {
+      const res = await fetch(`https://elearningbackend-z07d.onrender.com/api/jobs/${id}`, {
         method: 'DELETE',
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);

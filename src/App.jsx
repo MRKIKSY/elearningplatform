@@ -16,7 +16,7 @@ const App = () => {
   // Add New Job
   const addJob = async (newJob) => {
     try {
-      const res = await fetch('https://elearningbackend-z07d.onrender.com/api/jobs', {
+      const res = await fetch('/api/jobs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const App = () => {
   // Delete Job
   const deleteJob = async (id) => {
     try {
-      const res = await fetch(`https://elearningbackend-z07d.onrender.com/api/jobs/${id}`, {
+      const res = await fetch(`/api/jobs/${id}`, {
         method: 'DELETE',
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -50,7 +50,7 @@ const App = () => {
   const updateJob = async (job) => {
     try {
       console.log('Updating job with data:', job); // Debugging line
-      const res = await fetch(`https://elearningbackend-z07d.onrender.com/api/jobs/${job.id}`, {
+      const res = await fetch(`/api/jobs/${job.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

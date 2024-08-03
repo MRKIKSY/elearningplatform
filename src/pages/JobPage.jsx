@@ -3,10 +3,34 @@ import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+export const jobLoader = async ({ params }) => {
+  const { id } = params;
+
+  if (!id) {
+    throw new Error('Job ID is missing');
+  }
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/jobs/${id}`);
+    if (!res.ok) {
+      throw new Error(`Network response was not ok: ${res.statusText}`);
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching job:', error);
+    throw error; // Ensure errors are thrown to be caught by React Router's Error Boundary
+  }
+};
+
 const JobPage = ({ deleteJob }) => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const job = useLoaderData();
+  const job = useLoaderData(); // Data is automatically loaded by `jobLoader`
+
+  if (!job) {
+    return <div>Error loading job details</div>; // Basic error handling
+  }
 
   const onDeleteClick = (jobId) => {
     const confirm = window.confirm(
@@ -63,7 +87,6 @@ const JobPage = ({ deleteJob }) => {
               </div>
             </main>
 
-            {/* <!-- Sidebar --> */}
             <aside>
               <div className='bg-white p-6 rounded-lg shadow-md'>
                 <h3 className='text-xl font-bold mb-6'>Company Info</h3>
@@ -83,7 +106,6 @@ const JobPage = ({ deleteJob }) => {
                 <h3 className='text-xl'>Contact Phone:</h3>
 
                 <p className='my-2 bg-indigo-100 p-2 font-bold'>
-                  {' '}
                   {job.company.contactPhone}
                 </p>
               </div>
@@ -111,10 +133,5 @@ const JobPage = ({ deleteJob }) => {
   );
 };
 
-const jobLoader = async ({ params }) => {
-  const res = await fetch(`/api/jobs/${params.id}`);
-  const data = await res.json();
-  return data;
-};
+export default JobPage;
 
-export { JobPage as default, jobLoader };

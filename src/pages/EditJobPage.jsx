@@ -41,7 +41,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
 
     toast.success('Job Updated Successfully');
 
-    return navigate(`/jobs/${id}`);
+    return navigate(`https://jobmarketbackend.onrender.com/jobs/${id}`);
   };
 
   return (

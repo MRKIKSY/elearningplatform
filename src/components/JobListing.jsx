@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const JobListing = ({ job }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  let description = job.description;
+  let description = job.description || ''; // Ensure description is defined
 
   if (!showFullDescription) {
     description = description.substring(0, 90) + '...';
@@ -38,7 +38,7 @@ const JobListing = ({ job }) => {
             {job.location}
           </div>
           <Link
-            to={`/jobs/${job.id}`}
+            to={`/jobs/${job._id}`} // Ensure you use _id if that's the MongoDB ID
             className='h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm'
           >
             Read More
@@ -48,4 +48,5 @@ const JobListing = ({ job }) => {
     </div>
   );
 };
+
 export default JobListing;

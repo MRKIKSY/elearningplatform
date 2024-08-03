@@ -8,20 +8,27 @@ const JobListings = ({ isHome = false }) => {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const apiUrl = isHome ? '/api/jobs?_limit=3' : '/api/jobs';
+      const apiUrl = isHome ? 'https://jobmarketbackend.onrender.com/api/jobs?_limit=3' : 'http://localhost:5000/api/jobs';
       try {
+        console.log(`Fetching data from: ${apiUrl}`); // Log the API URL
         const res = await fetch(apiUrl);
+        console.log(`Response status: ${res.status}`); // Log the response status
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
         const data = await res.json();
+        console.log('Fetched data:', data); // Log the fetched data
         setJobs(data);
       } catch (error) {
-        console.log('Error fetching data', error);
+        console.error('Error fetching data:', error); // Use console.error for errors
+        setJobs([]); // Set jobs to an empty array on error
       } finally {
         setLoading(false);
       }
     };
 
     fetchJobs();
-  }, []);
+  }, [isHome]); // Added isHome as a dependency to re-fetch if it changes
 
   return (
     <section className='bg-blue-50 px-4 py-10'>
@@ -34,13 +41,18 @@ const JobListings = ({ isHome = false }) => {
           <Spinner loading={loading} />
         ) : (
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-            {jobs.map((job) => (
-              <JobListing key={job.id} job={job} />
-            ))}
+            {jobs.length > 0 ? (
+              jobs.map((job) => (
+                <JobListing key={job._id} job={job} />
+              ))
+            ) : (
+              <p className='text-center text-gray-500'>No jobs available.</p>
+            )}
           </div>
         )}
       </div>
     </section>
   );
 };
+
 export default JobListings;

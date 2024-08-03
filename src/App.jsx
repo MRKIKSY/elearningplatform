@@ -47,10 +47,9 @@ const App = () => {
     }
   };
 
-  // Update Job
-  const updateJob = async (job) => {
+  const updateJob = async (id, job) => {
     try {
-      const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${job.id}`, {
+      const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -63,6 +62,7 @@ const App = () => {
       console.error('Error updating job:', error);
     }
   };
+  
 
   const router = createBrowserRouter(
     createRoutesFromElements(

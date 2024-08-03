@@ -19,11 +19,12 @@ const EditJobPage = ({ updateJobSubmit }) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+ 
+
   const submitForm = (e) => {
     e.preventDefault();
-
+  
     const updatedJob = {
-      id,
       title,
       type,
       location,
@@ -36,14 +37,13 @@ const EditJobPage = ({ updateJobSubmit }) => {
         contactPhone,
       },
     };
-
-    updateJobSubmit(updatedJob);
-
+  
+    updateJobSubmit({ id, ...updatedJob }); // Pass `id` along with the job details
+  
     toast.success('Job Updated Successfully');
-
-    return navigate(`/jobs/${id}`);
+    navigate(`/jobs/${id}`);
   };
-
+  
   return (
     <section className='bg-indigo-50'>
       <div className='container m-auto max-w-2xl py-24'>

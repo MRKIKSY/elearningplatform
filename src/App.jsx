@@ -51,7 +51,7 @@ const App = () => {
   const updateJob = async (job) => {
     try {
       console.log('Updating job with data:', job); // Debugging line
-      const res = await fetch(`/api/jobs/${job.id}`, {
+      const res = await fetch(`https://jobmarketbackend.onrender.com/api/jobs/${job.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

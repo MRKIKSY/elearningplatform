@@ -46,24 +46,29 @@ const App = () => {
     }
   };
 
-  // Update Job
   const updateJob = async (job) => {
     try {
       console.log('Updating job with data:', job); // Debugging line
-      const res = await fetch(`/api/jobs/${job.id}`, {
+      const res = await fetch(`https://elearningbackend-z07d.onrender.com/api/jobs/${job.id}`, { // Use full URL
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(job),
       });
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-      console.log('Job update response:', await res.json()); // Debugging line
+  
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const responseData = await res.json(); // Store response data
+      console.log('Job update response:', responseData); // Debugging line
       // Optionally handle response or confirmation
     } catch (error) {
       console.error('Error updating job:', error);
     }
   };
+  
 
   const router = createBrowserRouter(
     createRoutesFromElements(

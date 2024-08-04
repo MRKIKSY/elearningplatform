@@ -8,7 +8,9 @@ const JobListings = ({ isHome = false }) => {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const apiUrl = isHome ? 'https://elearningbackend-z07d.onrender.com/api/jobs?_limit=3' : 'https://jobmarketbackend.onrender.com/api/jobs';
+      const apiUrl = isHome 
+        ? 'https://elearningbackend-z07d.onrender.com/api/jobs?_limit=3' 
+        : 'https://elearningbackend-z07d.onrender.com/api/jobs';
       try {
         console.log(`Fetching data from: ${apiUrl}`);
         const res = await fetch(apiUrl);
@@ -21,14 +23,15 @@ const JobListings = ({ isHome = false }) => {
         setJobs(data);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setJobs([]); // You might want to add user feedback here
+        setJobs([]);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchJobs();
-  }, [isHome]); // Removed apiUrl as a dependency
+  }, []);
+  
 
   return (
     <section className='bg-blue-50 px-4 py-10'>

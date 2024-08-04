@@ -77,17 +77,17 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               >
-                <option value='Full-Time'>Full-Time</option>
-                <option value='Part-Time'>Part-Time</option>
-                <option value='Remote'>Remote</option>
-                <option value='Internship'>Internship</option>
+                 <option value='Full-Time'>Pratice</option>
+                <option value='Part-Time'>Exercise</option>
+                <option value='Remote'>Reading</option>
+                <option value='Internship'>Comprehension</option>
               </select>
             </div>
 
             {/* Job Title */}
             <div className='mb-4'>
               <label className='block text-gray-700 font-bold mb-2'>
-                Job Listing Name
+                Assignment  Listing or Topic
               </label>
               <input
                 type='text'
@@ -126,7 +126,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 htmlFor='salary'
                 className='block text-gray-700 font-bold mb-2'
               >
-                Salary
+              Assignment Description or Explanation
               </label>
               <select
                 id='salary'
@@ -136,24 +136,24 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 value={salary}
                 onChange={(e) => setSalary(e.target.value)}
               >
-                <option value='Under $50K'>Under $50K</option>
-                <option value='$50K - 60K'>$50K - $60K</option>
-                <option value='$60K - 70K'>$60K - $70K</option>
-                <option value='$70K - 80K'>$70K - $80K</option>
-                <option value='$80K - 90K'>$80K - $90K</option>
-                <option value='$90K - 100K'>$90K - $100K</option>
-                <option value='$100K - 125K'>$100K - $125K</option>
-                <option value='$125K - 150K'>$125K - $150K</option>
-                <option value='$150K - 175K'>$150K - $175K</option>
-                <option value='$175K - 200K'>$175K - $200K</option>
-                <option value='Over $200K'>Over $200K</option>
+               <option value='Under $50K'>Nursery 1</option>
+                <option value='$50K - 60K'>Nursery 2</option>
+                <option value='$60K - 70K'>Primary 1</option>
+                <option value='$70K - 80K'>Primary 2</option>
+                <option value='$80K - 90K'>Primary 3</option>
+                <option value='$90K - 100K'>Primary 4</option>
+                <option value='$100K - 125K'>Primary 5</option>
+                <option value='$125K - 150K'>Test</option>
+                <option value='$150K - 175K'>Project</option>
+                <option value='$175K - 200K'>Extra Curriculim</option>
+                <option value='Over $200K'>Miscelleanous </option>
               </select>
             </div>
 
             {/* Location */}
             <div className='mb-4'>
               <label className='block text-gray-700 font-bold mb-2'>
-                Location
+                Class Teacher Name
               </label>
               <input
                 type='text'
@@ -168,14 +168,14 @@ const EditJobPage = ({ updateJobSubmit }) => {
             </div>
 
             {/* Company Info */}
-            <h3 className='text-2xl mb-5'>Company Info</h3>
+            <h3 className='text-2xl mb-5'>Assignment Instruction</h3>
 
             <div className='mb-4'>
               <label
                 htmlFor='company'
                 className='block text-gray-700 font-bold mb-2'
               >
-                Company Name
+                 Assignment Questions
               </label>
               <input
                 type='text'
@@ -194,7 +194,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 htmlFor='company-description'
                 className='block text-gray-700 font-bold mb-2'
               >
-                Company Description
+               Assignment Hints 
               </label>
               <textarea
                 id='company-description'
@@ -212,7 +212,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 htmlFor='contact-email'
                 className='block text-gray-700 font-bold mb-2'
               >
-                Contact Email
+               Contact Class Teacher By Email 
               </label>
               <input
                 type='email'
@@ -231,7 +231,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 htmlFor='contact-phone'
                 className='block text-gray-700 font-bold mb-2'
               >
-                Contact Phone
+                Contact Class Teacher by Phone
               </label>
               <input
                 type='tel'
@@ -250,7 +250,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 type='submit'
                 className='bg-indigo-500 text-white py-2 px-4 rounded'
               >
-                Update Job
+                Submit Assignment
               </button>
             </div>
           </form>

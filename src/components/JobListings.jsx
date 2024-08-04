@@ -49,7 +49,7 @@ const JobListings = ({ isHome = false }) => {
                 <JobListing key={job._id} job={job} />
               ))
             ) : (
-              <p className='text-center text-gray-500'>No jobs available.</p>
+              <p className='text-center text-gray-500'>No Assingments available.</p>
             )}
           </div>
         )}

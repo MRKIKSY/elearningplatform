@@ -24,10 +24,10 @@ const Navbar = () => {
                   Home
                 </NavLink>
                 <NavLink to='/jobs' className={linkClass}>
-                  Jobs
+                  E- Assignments
                 </NavLink>
                 <NavLink to='/add-job' className={linkClass}>
-                  Add Job
+                  Add Assignment
                 </NavLink>
               </div>
             </div>
